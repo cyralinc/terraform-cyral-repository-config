@@ -1,7 +1,8 @@
 terraform {
   required_providers {
     cyral = {
-      source = "cyral.com/terraform/cyral" //TODO: point to published provider
+      source = "cyralinc/cyral"
+      version = ">= 1.3.0"
     }
   }
 }
@@ -11,7 +12,8 @@ provider "cyral" {
   # Please see provider docs for more info.
   client_id = ""
   client_secret = ""
-  control_plane = ""
+  
+  control_plane = "mytenant.cyral.com:8000"
 }
 
 resource "cyral_repository" "some_repository" {
@@ -22,7 +24,7 @@ resource "cyral_repository" "some_repository" {
 }
 
 module "cyral_repository_config" {
-  source = "../../../terraform-cyral-repository-config"
+  source = "cyralinc/repository-config/cyral"
   
   repository_id = cyral_repository.some_repository.id
 
