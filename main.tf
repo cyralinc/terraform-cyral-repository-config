@@ -1,5 +1,5 @@
 locals {
-  mapLogSettingsToLogGroups = {
+  map_log_settings_to_log_groups = {
     "everything" = "everything"
     "privileged_commands" = "privileged"
     "port_scans" = "port-scan"
@@ -17,12 +17,15 @@ locals {
   }
 
   normal_log_settings_enabled = [for k, v in var.log_settings : k if v == true]
-  suspicious_activity_enabled = [for k, v in var.log_settings.suspicious_activity : k if v == true]
-  data_activity_enabled = [for k, v in var.log_settings.data_activity : "${k}.${v}" if v == "ALL_REQUESTS" || v == "LOGGED_FIELDS"]
+  suspicious_activity_enabled = [for k, v in var.log_settings.suspicious_activity : 
+    k if v == true]
+  data_activity_enabled = [for k, v in var.log_settings.data_activity : 
+    "${k}.${v}" if v == "ALL_REQUESTS" || v == "LOGGED_FIELDS"]
   log_settings_enabled = concat(local.normal_log_settings_enabled, 
     local.suspicious_activity_enabled, local.data_activity_enabled)
   
-  log_groups = [ for e in local.log_settings_enabled : local.mapLogSettingsToLogGroups[e]]
+  log_groups = [ for e in local.log_settings_enabled : 
+    local.map_log_settings_to_log_groups[e]]
 }
 
 

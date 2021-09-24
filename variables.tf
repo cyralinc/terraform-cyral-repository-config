@@ -1,9 +1,10 @@
 variable "repository_id" {
+  description = "The ID of an existing data repository resource that will be configured."
   type        = string
-  description = ""//TODO
 }
 
 variable "log_settings" {
+  description = "Repository Log Settings options that can be configured."
   type = object({
     everything = bool
     data_activity = object({
@@ -21,10 +22,32 @@ variable "log_settings" {
     connection_activity = bool
     sensitive_queries = bool
   })
-  description = ""//TODO
+  default = {
+    everything = true
+    data_activity = {
+      DQLs = ""
+      DMLs = ""
+      DDLs = ""
+    }
+    privileged_commands = false
+    suspicious_activity = {
+      port_scans = false
+      authentication_failures = false
+      full_scans = false
+    }
+    policy_violations = false
+    connection_activity = false
+    sensitive_queries = false
+  }
+  validation {
+    condition     = alltrue([for k, v in var.log_settings.data_activity : 
+      v == "" || v == "ALL_REQUESTS" || v == "LOGGED_FIELDS"])
+    error_message = "The data_activity options must have one of the following valid values: \"ALL_REQUEST\", \"LOGGED_FIELDS\" or \"\"."
+  }
 }
 
 variable "advanced" {
+  description = "Repository Advanced options that can be configured."
   type = object({
     redact_literal_values = bool
     enhance_database_logs = bool
@@ -34,5 +57,13 @@ variable "advanced" {
     block_on_violations = bool
     rewrite_queries_on_violations = bool
   })
-  description = ""//TODO
+  default = {
+    redact_literal_values = true
+    enhance_database_logs = false
+    alert_on_policy_violations = true
+    enable_preconfigured_alerts = true
+    perform_filter_analysis = true
+    block_on_violations = false
+    rewrite_queries_on_violations = false
+  }
 }

@@ -19,7 +19,7 @@ resource "cyral_repository" "some_repository" {
   name = "terraform-test-repo"
 }
 
-module "cyral_repository-config" {
+module "cyral_repository_config" {
   source = "../../../terraform-cyral-repository-config"
   
   repository_id = cyral_repository.some_repository.id
@@ -51,4 +51,8 @@ module "cyral_repository-config" {
     block_on_violations = false
     rewrite_queries_on_violations = false
   }
+}
+
+output "repository_conf_analysis_id" {
+  value = module.cyral_repository_config.repository_conf_analysis_id
 }

@@ -2,7 +2,7 @@
   required_providers {
     cyral = {
       source = "cyralinc/cyral"
-      version = ">= 1.2.0"//TODO: Should point to the future published version
+      version = ">= 1.3.0"
     }
   }
 } */
