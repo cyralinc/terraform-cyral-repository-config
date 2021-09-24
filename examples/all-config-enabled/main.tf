@@ -7,9 +7,11 @@ terraform {
 }
 
 provider "cyral" {
-    client_id = ""
-    client_secret = ""
-    control_plane = ""
+  # client_id and client_secret may also be declared as env vars.
+  # Please see provider docs for more info.
+  client_id = ""
+  client_secret = ""
+  control_plane = ""
 }
 
 resource "cyral_repository" "some_repository" {
@@ -25,31 +27,31 @@ module "cyral_repository_config" {
   repository_id = cyral_repository.some_repository.id
 
   log_settings = {
-    everything = false
+    everything = true
     data_activity = {
-      DQLs = ""
-      DMLs = ""
-      DDLs = ""
+      DQLs = "LOGGED_FIELDS"
+      DMLs = "ALL_REQUESTS"
+      DDLs = "ALL_REQUESTS"
     }
-    privileged_commands = false
+    privileged_commands = true
     suspicious_activity = {
-      port_scans = false
-      authentication_failures = false
-      full_scans = false
+      port_scans = true
+      authentication_failures = true
+      full_scans = true
     }
-    policy_violations = false
-    connection_activity = false
-    sensitive_queries = false
+    policy_violations = true
+    connection_activity = true
+    sensitive_queries = true
   }
   
   advanced = {
-    redact_literal_values = false
-    enhance_database_logs = false
-    alert_on_policy_violations = false
-    enable_preconfigured_alerts = false
-    perform_filter_analysis = false
-    block_on_violations = false
-    rewrite_queries_on_violations = false
+    redact_literal_values = true
+    enhance_database_logs = true
+    alert_on_policy_violations = true
+    enable_preconfigured_alerts = true
+    perform_filter_analysis = true
+    block_on_violations = true
+    rewrite_queries_on_violations = true
   }
 }
 
