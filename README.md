@@ -8,7 +8,7 @@ terraform {
   required_providers {
     cyral = {
       source = "cyralinc/cyral"
-      version = ">= 1.3.0"
+      version = ">= 2.0.0"
     }
   }
 }
@@ -71,13 +71,13 @@ output "repository_conf_analysis_id" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_cyral"></a> [cyral](#requirement\_cyral) | >= 1.3.0 |
+| <a name="requirement_cyral"></a> [cyral](#requirement\_cyral) | >= 2.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cyral"></a> [cyral](#provider\_cyral) | >= 1.3.0 |
+| <a name="provider_cyral"></a> [cyral](#provider\_cyral) | >= 2.0.0 |
 
 ## Modules
 
