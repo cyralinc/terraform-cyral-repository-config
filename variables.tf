@@ -6,7 +6,6 @@ variable "repository_id" {
 variable "log_settings" {
   description = "Repository Log Settings options that can be configured."
   type = object({
-    everything = bool
     data_activity = object({
       DQLs = string
       DMLs = string
@@ -23,7 +22,6 @@ variable "log_settings" {
     sensitive_queries = bool
   })
   default = {
-    everything = true
     data_activity = {
       DQLs = ""
       DMLs = ""

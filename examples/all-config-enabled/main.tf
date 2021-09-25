@@ -29,7 +29,6 @@ module "cyral_repository_config" {
   repository_id = cyral_repository.some_repository.id
 
   log_settings = {
-    everything = true
     data_activity = {
       DQLs = "LOGGED_FIELDS"
       DMLs = "ALL_REQUESTS"

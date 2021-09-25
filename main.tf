@@ -1,6 +1,5 @@
 locals {
   map_log_settings_to_log_groups = {
-    "everything" = "everything"
     "privileged_commands" = "privileged"
     "port_scans" = "port-scan"
     "authentication_failures" = "auth-failure"
