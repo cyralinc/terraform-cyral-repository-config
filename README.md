@@ -1,5 +1,6 @@
-# Cyral Repository Configuration Terraform module
-Terraform module which configures Cyral Data Repositories resources.
+# Cyral Repository Configuration Module
+
+This module provides the repository configuration options as shown in Cyral UI.
 
 ## Usage
 ```terraform
@@ -86,15 +87,15 @@ No modules.
 
 | Name | Type |
 |------|------|
-| cyral_repository_conf_analysis.this | resource |
+| [cyral_repository_conf_analysis.this](https://registry.terraform.io/providers/cyralinc/cyral/latest/docs/resources/repository_conf_analysis) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_advanced"></a> [advanced](#input\_advanced) | Repository Advanced options that can be configured. | <pre>object({<br>    redact_literal_values = bool<br>    enhance_database_logs = bool<br>    alert_on_policy_violations = bool<br>    enable_preconfigured_alerts = bool<br>    perform_filter_analysis = bool<br>    block_on_violations = bool<br>    rewrite_queries_on_violations = bool<br>  })</pre> | <pre>{<br>  "alert_on_policy_violations": true,<br>  "block_on_violations": false,<br>  "enable_preconfigured_alerts": true,<br>  "enhance_database_logs": false,<br>  "perform_filter_analysis": true,<br>  "redact_literal_values": true,<br>  "rewrite_queries_on_violations": false<br>}</pre> | no |
-| <a name="input_log_settings"></a> [log\_settings](#input\_log\_settings) | Repository Log Settings options that can be configured. | <pre>object({<br>    data_activity = object({<br>      DQLs = string<br>      DMLs = string<br>      DDLs = string<br>    })<br>    privileged_commands = bool<br>    suspicious_activity = object({<br>      port_scans = bool<br>      authentication_failures = bool<br>      full_scans = bool<br>    })<br>    policy_violations = bool<br>    connection_activity = bool<br>    sensitive_queries = bool<br>  })</pre> | <pre>{<br>  "connection_activity": false,<br>  "data_activity": {<br>    "DDLs": "",<br>    "DMLs": "",<br>    "DQLs": ""<br>  },<br>  "policy_violations": false,<br>  "privileged_commands": false,<br>  "sensitive_queries": false,<br>  "suspicious_activity": {<br>    "authentication_failures": false,<br>    "full_scans": false,<br>    "port_scans": false<br>  }<br>}</pre> | no |
-| <a name="input_repository_id"></a> [repository\_id](#input\_repository\_id) | The ID of an existing data repository resource that will be configured. | `string` | n/a | yes |
+| <a name="input_advanced"></a> [advanced](#input\_advanced) | Repository advanced settings as shown in the UI tab 'Advanced' | <pre>object({<br>    redact_literal_values = bool<br>    enhance_database_logs = bool<br>    alert_on_policy_violations = bool<br>    enable_preconfigured_alerts = bool<br>    perform_filter_analysis = bool<br>    block_on_violations = bool<br>    rewrite_queries_on_violations = bool<br>  })</pre> | <pre>{<br>  "alert_on_policy_violations": true,<br>  "block_on_violations": false,<br>  "enable_preconfigured_alerts": true,<br>  "enhance_database_logs": false,<br>  "perform_filter_analysis": true,<br>  "redact_literal_values": true,<br>  "rewrite_queries_on_violations": false<br>}</pre> | no |
+| <a name="input_log_settings"></a> [log\_settings](#input\_log\_settings) | Repository log settings as shown in the UI tab 'Log Settings' | <pre>object({<br>    data_activity = object({<br>      DQLs = string<br>      DMLs = string<br>      DDLs = string<br>    })<br>    privileged_commands = bool<br>    suspicious_activity = object({<br>      port_scans = bool<br>      authentication_failures = bool<br>      full_scans = bool<br>    })<br>    policy_violations = bool<br>    connection_activity = bool<br>    sensitive_queries = bool<br>  })</pre> | <pre>{<br>  "connection_activity": false,<br>  "data_activity": {<br>    "DDLs": "",<br>    "DMLs": "",<br>    "DQLs": ""<br>  },<br>  "policy_violations": false,<br>  "privileged_commands": false,<br>  "sensitive_queries": false,<br>  "suspicious_activity": {<br>    "authentication_failures": false,<br>    "full_scans": false,<br>    "port_scans": false<br>  }<br>}</pre> | no |
+| <a name="input_repository_id"></a> [repository\_id](#input\_repository\_id) | ID of the repository that will have its configuration managed | `string` | n/a | yes |
 
 ## Outputs
 

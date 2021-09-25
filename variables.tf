@@ -1,10 +1,10 @@
 variable "repository_id" {
-  description = "The ID of an existing data repository resource that will be configured."
+  description = "ID of the repository that will have its configuration managed"
   type        = string
 }
 
 variable "log_settings" {
-  description = "Repository Log Settings options that can be configured."
+  description = "Repository log settings as shown in the UI tab 'Log Settings'"
   type = object({
     data_activity = object({
       DQLs = string
@@ -40,12 +40,12 @@ variable "log_settings" {
   validation {
     condition     = alltrue([for k, v in var.log_settings.data_activity : 
       v == "" || v == "ALL_REQUESTS" || v == "LOGGED_FIELDS"])
-    error_message = "The data_activity options must have one of the following valid values: \"ALL_REQUEST\", \"LOGGED_FIELDS\" or \"\"."
+    error_message = "The data_activity options must have one of the following values: \"ALL_REQUEST\", \"LOGGED_FIELDS\" or \"\"."
   }
 }
 
 variable "advanced" {
-  description = "Repository Advanced options that can be configured."
+  description = "Repository advanced settings as shown in the UI tab 'Advanced'"
   type = object({
     redact_literal_values = bool
     enhance_database_logs = bool
