@@ -52,6 +52,7 @@ variable "advanced" {
     alert_on_policy_violations = bool
     enable_preconfigured_alerts = bool
     perform_filter_analysis = bool
+    enable_data_masking = bool
     block_on_violations = bool
     rewrite_queries_on_violations = bool
   })
@@ -61,6 +62,7 @@ variable "advanced" {
     alert_on_policy_violations = true
     enable_preconfigured_alerts = true
     perform_filter_analysis = true
+    enable_data_masking = false
     block_on_violations = false
     rewrite_queries_on_violations = false
   }
