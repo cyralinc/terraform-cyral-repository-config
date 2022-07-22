@@ -36,6 +36,7 @@ resource "cyral_repository_conf_analysis" "this" {
   disable_pre_configured_alerts = !var.advanced.enable_preconfigured_alerts
   block_on_violation = var.advanced.block_on_violations
   disable_filter_analysis = !var.advanced.perform_filter_analysis
+  enable_data_masking = var.advanced.enable_data_masking
   rewrite_on_violation = var.advanced.rewrite_queries_on_violations
   log_groups = local.log_groups
 }
