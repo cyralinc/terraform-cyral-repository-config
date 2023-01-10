@@ -18,9 +18,12 @@ provider "cyral" {
 
 resource "cyral_repository" "some_repository" {
   type = "postgresql"
-  host = "some-hostname"
-  port = "3067"
   name = "terraform-test-repo"
+
+  repo_node {
+    host = "some-hostname"
+    port = "3067"
+  }
 }
 
 module "cyral_repository_config" {
