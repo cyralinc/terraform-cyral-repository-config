@@ -2,7 +2,7 @@ terraform {
   required_providers {
     cyral = {
       source = "cyralinc/cyral"
-      version = ">= 2.0.0"
+      version = ">= 4.0.0"
     }
   }
 }
@@ -13,14 +13,17 @@ provider "cyral" {
   client_id = ""
   client_secret = ""
   
-  control_plane = "mytenant.cyral.com:8000"
+  control_plane = "mytenant.cyral.com"
 }
 
 resource "cyral_repository" "some_repository" {
   type = "postgresql"
-  host = "some-hostname"
-  port = "3067"
   name = "terraform-test-repo"
+
+  repo_node {
+    host = "some-hostname"
+    port = "3067"
+  }
 }
 
 module "cyral_repository_config" {
